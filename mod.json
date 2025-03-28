@@ -1,0 +1,17 @@
+{
+    "Name": "NorthstarCustom.CustomServers",
+    "Description": "Various fixes for Northstar DS, that are not included for whatever reason.",
+    "Version": "1.30.0",
+    "LoadPriority": 3,
+    "Scripts": 
+    [
+        {
+            "Path": "rodeo/_apply_battery_callbacks.gnut",
+            "RunOn": "SERVER && MP",
+            "ServerCallback": 
+            {
+                "After": "MoreApplyBatteryCallbacks_Init"
+            }
+        }
+    ]
+}

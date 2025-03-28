@@ -1,0 +1,26 @@
+global function MoreApplyBatteryCallbacks_Init
+global function AddOnApplyBatteryCallback
+
+struct
+{
+    array<void functionref(entity,entity,entity)> onApplyBatteryCallbacks
+} file
+
+void function MoreApplyBatteryCallbacks_Init()
+{
+    SetApplyBatteryCallback( MoreApplyBatteryCallbacks )
+}
+
+void function AddOnApplyBatteryCallback( void functionref(entity,entity,entity) callbackFunc )
+{
+    Assert (!( file.onApplyBatteryCallbacks.contains( callbackFunc ) ))
+	file.onApplyBatteryCallbacks.append( callbackFunc )
+}
+
+void function MoreApplyBatteryCallbacks( entity rider, entity titan, entity battery )
+{
+    foreach ( callbackFunc in file.onApplyBatteryCallbacks )
+	{
+		callbackFunc( rider, titan, battery )
+	}
+}
